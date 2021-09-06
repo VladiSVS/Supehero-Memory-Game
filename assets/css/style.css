@@ -21,7 +21,6 @@ p {
 
 img {
     width: 5em;
-    display: none;
 }
 
 section {
@@ -59,6 +58,6 @@ section > article:last-of-type > div {
     width: 5em;
     height: 5em;
     background: gray;
-    border: 1em solid #fff;
+    margin: 1em;
     cursor: pointer;
 }

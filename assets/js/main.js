@@ -35,18 +35,19 @@ let countArr = []
 let pairsClick = 0
 
 for (let i = 0; i < duplicatedArr.length; i++) {
-
     let card = document.createElement('div')
     card.id = `card${i}`
     document.getElementById("setCards").appendChild(card)
     let newImage = document.createElement('img')
     newImage.id = `img${i}`
+    newImage.style.display = 'none'
     newImage.src = duplicatedArr[i].image
     document.getElementById(`card${i}`).prepend(newImage)
     document.getElementById(`card${i}`).addEventListener("click", () => {
         pairsClick++
         document.getElementById('pairsClick').innerHTML = pairsClick
         document.getElementById(`img${i}`).style.display = "block"
+        document.getElementById(`card${i}`).style.pointerEvents = "none"
         countArr.push(duplicatedArr[i].name)
         console.log(countArr)
         dupliFilter()
