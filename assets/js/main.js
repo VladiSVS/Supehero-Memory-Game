@@ -1,5 +1,5 @@
 
-class Card {
+class Card { //create a card object with or without a name
     constructor(name, image) {
         this.name = name
         this.image = image
@@ -22,19 +22,19 @@ let thor = new Card("thor", "assets/img/thor.jpg")
 let cardsArr = [aquaman, batman, captainAmerica, fantasticFour, flash, greenArrow, greenLantern, ironman, spiderman, superman, theAvengers, thor]
 let duplicatedArr = []
 
-for (let i = 0; i < cardsArr.length; i++) {
+for (let i = 0; i < cardsArr.length; i++) { //duplicate cards
     duplicatedArr.push(cardsArr[i])
     duplicatedArr.push(cardsArr[i])
 }
 console.log(duplicatedArr)
 
-//shuffling the Array
-duplicatedArr.sort(() => .1 - Math.random())
+duplicatedArr.sort(() => .1 - Math.random()) //shuffling the Array
 
 let countArr = []
 let pairsClick = 0
+let pairsGuess = 0
 
-for (let i = 0; i < duplicatedArr.length; i++) {
+for (let i = 0; i < duplicatedArr.length; i++) { //cycle of adding cards
     let card = document.createElement('div')
     card.id = `card${i}`
     document.getElementById("setCards").appendChild(card)
@@ -43,25 +43,28 @@ for (let i = 0; i < duplicatedArr.length; i++) {
     newImage.style.display = 'none'
     newImage.src = duplicatedArr[i].image
     document.getElementById(`card${i}`).prepend(newImage)
-    document.getElementById(`card${i}`).addEventListener("click", () => {
+    document.getElementById(`card${i}`).addEventListener("click", () => { //track the selected card
         pairsClick++
+        document.getElementById(`card${i}`).classList.add('flipper')
         document.getElementById('pairsClick').innerHTML = pairsClick
-        document.getElementById(`img${i}`).style.display = "block"
-        document.getElementById(`card${i}`).style.pointerEvents = "none"
+        document.getElementById(`card${i}`).style.pointerEvents = "none" //make the selected card inactive
         countArr.push(duplicatedArr[i].name)
-        console.log(countArr)
+        flipFlap = () => { //rotation animation
+            document.getElementById(`img${i}`).style.display = "block"
+        }
+        setTimeout(flipFlap, 800)
         dupliFilter()
+        console.log(countArr)
     })
 }
 
-let pairsGuess = 0
-
+//counter 
 dupliFilter = () => {
     for (let i = 0; i < countArr.length; i++) {
         for (let j = i + 1; j < countArr.length; j++) {
-            if (countArr[j] == countArr[i]) {
-                countArr.splice(j, 1)
+            if (countArr[j] == countArr[i]) { //push the names of open cards into a new array and check for paired cards
                 pairsGuess++
+                countArr.splice(j, 1)
                 document.getElementById("pairsGuess").innerHTML = pairsGuess
             }
         }

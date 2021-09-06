@@ -61,3 +61,20 @@ section > article:last-of-type > div {
     margin: 1em;
     cursor: pointer;
 }
+
+.flipper {
+    animation-name: flipper;
+    animation-duration: 1s;
+}
+
+@keyframes flipper {
+    
+    0% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        transform: rotateY(0deg);
+    }
+
+}
