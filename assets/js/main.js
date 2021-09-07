@@ -26,9 +26,8 @@ for (let i = 0; i < cardsArr.length; i++) { //duplicate cards
     duplicatedArr.push(cardsArr[i])
     duplicatedArr.push(cardsArr[i])
 }
-console.log(duplicatedArr)
 
-duplicatedArr.sort(() => .1 - Math.random()) //shuffling the Array
+duplicatedArr.sort(() => .5 - Math.random()) //shuffling the Array
 
 let countArr = []
 let pairsClick = 0
@@ -44,35 +43,28 @@ for (let i = 0; i < duplicatedArr.length; i++) { //cycle of adding cards
     newImage.src = duplicatedArr[i].image
     document.getElementById(`card${i}`).prepend(newImage)
     document.getElementById(`card${i}`).addEventListener("click", () => { //track the selected card
-        pairsClick++
         document.getElementById(`card${i}`).classList.add('flipper')
-        document.getElementById('pairsClick').innerHTML = pairsClick
-        document.getElementById(`card${i}`).style.pointerEvents = "none" //make the selected card inactive
         countArr.push(duplicatedArr[i].name)
+
         flipFlap = () => { //rotation animation
             document.getElementById(`img${i}`).style.display = "block"
         }
         setTimeout(flipFlap, 800)
-        dupliFilter()
-        console.log(countArr)
+
+        if (countArr.length == 2 && countArr[0] !== countArr[1]) {
+            pairsClick++
+            document.getElementById('pairsClick').innerHTML = pairsClick
+            console.log(countArr)
+            countArr.length = 0
+            document.getElementById(`img${i}`).style.display = "none"
+        } else if (countArr.length == 2 && countArr[0] == countArr[1]) {
+            pairsClick++
+            document.getElementById('pairsClick').innerHTML = pairsClick
+            pairsGuess++
+            document.getElementById("pairsGuess").innerHTML = pairsGuess
+            countArr.length = 0
+        }
     })
 }
-
-//counter 
-dupliFilter = () => {
-    for (let i = 0; i < countArr.length; i++) {
-        for (let j = i + 1; j < countArr.length; j++) {
-            if (countArr[j] == countArr[i]) { //push the names of open cards into a new array and check for paired cards
-                pairsGuess++
-                countArr.splice(j, 1)
-                document.getElementById("pairsGuess").innerHTML = pairsGuess
-            }
-        }
-    }
-}
-
-
-
-
 
 

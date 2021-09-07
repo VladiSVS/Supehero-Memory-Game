@@ -62,6 +62,10 @@ section > article:last-of-type > div {
     cursor: pointer;
 }
 
+.hider {
+    display: none;
+}
+
 .flipper {
     animation-name: flipper;
     animation-duration: 1s;
