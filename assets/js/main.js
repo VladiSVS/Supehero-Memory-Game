@@ -69,7 +69,7 @@ for (let i = 0; i < duplicatedArr.length; i++) { //cycle of adding cards
                 setTimeout(hiderTime, 2000)
             })
             countArr.length = 0
-        } else if (countArr.length == 2 && countArr[0] == countArr[1]) {
+        } else if (countArr[0] == countArr[1]) {
             pairsClick++
             document.getElementById('pairsClick').innerHTML = pairsClick
             pairsGuess++
