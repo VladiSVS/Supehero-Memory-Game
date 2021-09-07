@@ -38,25 +38,37 @@ for (let i = 0; i < duplicatedArr.length; i++) { //cycle of adding cards
     card.id = `card${i}`
     document.getElementById("setCards").appendChild(card)
     let newImage = document.createElement('img')
-    newImage.id = `img${i}`
-    newImage.style.display = 'none'
+    newImage.classList.add('hider')
     newImage.src = duplicatedArr[i].image
     document.getElementById(`card${i}`).prepend(newImage)
     document.getElementById(`card${i}`).addEventListener("click", () => { //track the selected card
         document.getElementById(`card${i}`).classList.add('flipper')
         countArr.push(duplicatedArr[i].name)
-
-        flipFlap = () => { //rotation animation
-            document.getElementById(`img${i}`).style.display = "block"
-        }
-        setTimeout(flipFlap, 800)
+        let selectCard = document.querySelectorAll('.flipper')
+        let selectImage = document.querySelectorAll('.flipper img')
+        selectImage.forEach(elt => {
+            elt.classList.remove('hider')
+        })
 
         if (countArr.length == 2 && countArr[0] !== countArr[1]) {
             pairsClick++
             document.getElementById('pairsClick').innerHTML = pairsClick
             console.log(countArr)
+            selectCard.forEach(elt => {
+                elt.classList.add('flipperHide')
+                hiderTime = () => { //rotation animation
+                    elt.classList.remove('flipper')
+                    elt.classList.remove('flipperHide')
+                }
+                setTimeout(hiderTime, 2000)
+            })
+            selectImage.forEach(elt => {
+                hiderTime = () => { //rotation animation
+                    elt.classList.add('hider')
+                }
+                setTimeout(hiderTime, 2000)
+            })
             countArr.length = 0
-            document.getElementById(`img${i}`).style.display = "none"
         } else if (countArr.length == 2 && countArr[0] == countArr[1]) {
             pairsClick++
             document.getElementById('pairsClick').innerHTML = pairsClick
@@ -66,5 +78,3 @@ for (let i = 0; i < duplicatedArr.length; i++) { //cycle of adding cards
         }
     })
 }
-
-

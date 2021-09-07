@@ -62,10 +62,6 @@ section > article:last-of-type > div {
     cursor: pointer;
 }
 
-.hider {
-    display: none;
-}
-
 .flipper {
     animation-name: flipper;
     animation-duration: 1s;
@@ -79,6 +75,32 @@ section > article:last-of-type > div {
 
     100% {
         transform: rotateY(0deg);
+    }
+
+}
+
+.shower {
+    display: block;
+}
+
+.hider {
+    display: none;
+}
+
+.flipperHide {
+    animation-name: flipperHide;
+    animation-duration: 2s;
+}
+
+@keyframes flipperHide {
+
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(180deg);
+        display: none;
     }
 
 }
