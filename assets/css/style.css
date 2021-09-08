@@ -20,7 +20,7 @@ p {
 }
 
 img {
-    width: 5em;
+    width: 5.5em;
 }
 
 section {
@@ -50,15 +50,15 @@ section > article:last-of-type {
     flex-wrap: wrap;
     background: #fff;
     border-radius: 2em;
-    width: 42em;
+    width: 39em;
     padding: 1em;
 }
 
 section > article:last-of-type > div {
-    width: 5em;
-    height: 5em;
-    background: gray;
-    margin: 1em;
+    width: 5.5em;
+    height: 5.5em;
+    background: grey;
+    margin: 0.5em;
     cursor: pointer;
 }
 
@@ -70,7 +70,7 @@ section > article:last-of-type > div {
 @keyframes flipper {
     
     0% {
-        transform: rotateY(180deg);
+        transform: rotateY(90deg);
     }
 
     100% {
@@ -79,8 +79,8 @@ section > article:last-of-type > div {
 
 }
 
-.shower {
-    display: block;
+.bingo {
+    pointer-events: none;
 }
 
 .hider {
@@ -96,11 +96,17 @@ section > article:last-of-type > div {
 
     0% {
         transform: rotateY(0deg);
+        
+    }
+
+    50% {
+        transform: rotateY(90deg);
+        display: none;
     }
 
     100% {
         transform: rotateY(180deg);
-        display: none;
+       
     }
 
 }

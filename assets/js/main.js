@@ -43,37 +43,47 @@ for (let i = 0; i < duplicatedArr.length; i++) { //cycle of adding cards
     document.getElementById(`card${i}`).prepend(newImage)
     document.getElementById(`card${i}`).addEventListener("click", () => { //track the selected card
         document.getElementById(`card${i}`).classList.add('flipper')
+        document.getElementById(`card${i}`).classList.add('bingo')
         countArr.push(duplicatedArr[i].name)
         let selectCard = document.querySelectorAll('.flipper')
+        let bingoCard = document.querySelectorAll('.bingo img')
         let selectImage = document.querySelectorAll('.flipper img')
         selectImage.forEach(elt => {
             elt.classList.remove('hider')
         })
 
+        console.log(countArr)
+
         if (countArr.length == 2 && countArr[0] !== countArr[1]) {
             pairsClick++
             document.getElementById('pairsClick').innerHTML = pairsClick
-            console.log(countArr)
             selectCard.forEach(elt => {
                 elt.classList.add('flipperHide')
-                hiderTime = () => { //rotation animation
-                    elt.classList.remove('flipper')
+                elt.classList.remove('flipper')
+                elt.classList.remove('bingo')
+                hiderTime = () => {
                     elt.classList.remove('flipperHide')
                 }
                 setTimeout(hiderTime, 2000)
             })
             selectImage.forEach(elt => {
-                hiderTime = () => { //rotation animation
+                hiderTime = () => {
                     elt.classList.add('hider')
                 }
-                setTimeout(hiderTime, 2000)
+                setTimeout(hiderTime, 1000)
             })
             countArr.length = 0
-        } else if (countArr[0] == countArr[1]) {
+        } else if (countArr.length == 2 && countArr[0] === countArr[1]) {
             pairsClick++
             document.getElementById('pairsClick').innerHTML = pairsClick
             pairsGuess++
             document.getElementById("pairsGuess").innerHTML = pairsGuess
+            selectCard.forEach(elt => {
+                elt.classList.remove('flipper')
+            })
+            bingoCard.forEach(elt => {
+                elt.classList.remove('hider')
+            })
             countArr.length = 0
         }
     })
